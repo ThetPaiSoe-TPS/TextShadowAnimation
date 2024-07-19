@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="TextShadowAnimation.css">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="text">Shadow</div>
+    <div id="light"></div>
+
+    <script>
+        let text= document.getElementById("text");
+        let light= document.getElementById("light");
+        document.addEventListener("mousemove", function(event){
+            //moving the moon
+            let mouseX= event.clientX;
+            let mouseY= event.clientY;
+            light.style.left= mouseX+ "px";
+            light.style.top= mouseY+ "px";
+
+            //adding shadow
+            let newShadow= "";
+            let distanceX= mouseX- text.offsetLeft- text.offsetWidth/ 2;
+            let distanceY= mouseY- text.offsetTop- text.offsetHeight/ 2;
+            
+            for(var i=0; i< 100; i++){
+                let shadowX= -distanceX* (i/200);
+                let shadowY= -distanceY* (i/200);
+                let opacity= 1- (i/100);
+                newShadow+= (newShadow? ",": "")+shadowX+"px "+shadowY+"px rgba(33, 33, 33, "+opacity+")";
+                console.log(newShadow);
+            }
+            text.style.textShadow= newShadow;
+        })
+
+    </script>
+</body>
+</html>
